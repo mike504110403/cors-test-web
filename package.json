@@ -1,0 +1,10 @@
+{
+  "name": "cors-test-web",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "live-server ./ --port=8888"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

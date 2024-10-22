@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CORS 測試</title>
+</head>
+<body>
+  <h1>本地 CORS 測試</h1>
+  <button id="test-api">測試 API 請求</button>
+
+  <script>
+    document.getElementById('test-api').addEventListener('click', function() {
+      fetch('http://ec2-15-152-38-25.ap-northeast-3.compute.amazonaws.com:8080/api/private/v1/member/info', {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNZW1iZXJJZCI6MTYsIlVzZXJOYW1lIjoidGVzdGxvY2FsMDA3IiwiZXhwIjoxNzI5MzQxNTI1fQ.APKREDRMVdOTM7AXbQaDTsW99WiFTZS2-CNflvyPGCY',
+          'Content-Type': 'application/json',
+        },
+        // credentials: 'include' // 攜帶 cookies 或其他憑證
+      })
+      .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => console.log('Response:', data))
+        .catch(error => console.error('Error:', error));
+    });
+  </script>
+</body>
+</html>
